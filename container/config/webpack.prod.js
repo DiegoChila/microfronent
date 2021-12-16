@@ -8,14 +8,14 @@ const domain = process.env.PRODUCTION_DOMAIN;
 const prodConfig = {
     mode: 'production',
     output: {
-        filename: '[name].[contenthas].js',
+        filename: '[name].[contenthash].js',
         publicPath: '/container/latest/'
     },
     plugins: [
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketing: `marketing@$https://d3vppmyazc8fkj.cloudfront.net/marketing/latest/remoteEntry.js`
+                marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
             },
             shared: packageJson.dependencies,
         })
